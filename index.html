@@ -1,194 +1,117 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="fa">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>فروشگاه jackboys_shop</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>فروشگاه خفن من</title>
+  <style>
+    /* پس‌زمینه متحرک */
+    @keyframes gradientBG {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
 
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=IRANSans&display=swap');
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(-45deg, #ff7e5f, #feb47b, #86A8E7, #91EAE4);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+    }
 
-        /* پس‌زمینه متحرک */
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: "IRANSans", Tahoma, sans-serif;
-            direction: rtl;
-            text-align: center;
-            color: #f0f0f0;
-            background: linear-gradient(270deg, #121212, #1f1f1f, #121212);
-            background-size: 600% 600%;
-            animation: gradientBG 15s ease infinite;
-            overflow-x: hidden;
-        }
+    /* استایل منوی کشویی */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 30px;
+    }
 
-        @keyframes gradientBG {
-            0% {background-position: 0% 50%;}
-            50% {background-position: 100% 50%;}
-            100% {background-position: 0% 50%;}
-        }
+    .dropbtn {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      padding: 15px 30px;
+      font-size: 20px;
+      border: none;
+      border-radius: 15px;
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+      transition: 0.3s;
+    }
 
-        /* نورهای شناور */
-        .floating-lights {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            overflow: hidden;
-        }
+    .dropbtn:hover {
+      background: rgba(255, 255, 255, 0.4);
+    }
 
-        .light {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: rgba(255,106,0,0.6);
-            border-radius: 50%;
-            animation: float 10s linear infinite;
-        }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background: rgba(0, 0, 0, 0.6);
+      min-width: 180px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+      animation: fadeIn 0.5s ease;
+    }
 
-        @keyframes float {
-            0% {transform: translateY(0) translateX(0);}
-            100% {transform: translateY(-120vh) translateX(50vw);}
-        }
+    .dropdown-content a {
+      color: white;
+      padding: 12px 20px;
+      text-decoration: none;
+      display: block;
+      transition: 0.3s;
+    }
 
-        .header {
-            padding: 40px 10px;
-            color: #ff6a00;
-            text-shadow: 1px 1px 5px #000;
-        }
+    .dropdown-content a:hover {
+      background: rgba(255,255,255,0.1);
+    }
 
-        .header h1 {
-            margin: 0;
-            font-size: 32px;
-        }
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
 
-        .header p {
-            margin-top: 10px;
-            font-size: 16px;
-            opacity: 0.8;
-        }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(-10px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
 
-        .slideshow-container {
-            position: relative;
-            max-width: 420px;
-            margin: 30px auto;
-            border-radius: 14px;
-            overflow: hidden;
-            box-shadow: 0 0 20px rgba(0,0,0,0.8);
-            background: rgba(31, 31, 31, 0.8);
-        }
+    /* دکمه تماس شیشه‌ای */
+    .contact-btn {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      padding: 14px 30px;
+      font-size: 18px;
+      text-decoration: none;
+      border-radius: 15px;
+      backdrop-filter: blur(10px);
+      transition: 0.3s;
+    }
 
-        .slide {
-            position: absolute;
-            width: 100%;
-            opacity: 0;
-            transition: opacity 1.2s ease-in-out;
-        }
-
-        .slide img {
-            width: 100%;
-            display: block;
-            border-radius: 14px;
-        }
-
-        .slide-text {
-            position: absolute;
-            bottom: 15px;
-            width: 100%;
-            color: #ff6a00;
-            font-size: 22px;
-            font-weight: bold;
-            text-align: center;
-            text-shadow: 2px 2px 6px #000;
-        }
-
-        .btn {
-            display: block;
-            background: #ff6a00;
-            color: #fff;
-            padding: 14px;
-            margin: 12px auto;
-            width: 90%;
-            max-width: 420px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-size: 17px;
-            font-weight: bold;
-            transition: 0.3s;
-            box-shadow: 0 4px 15px rgba(255,106,0,0.6);
-        }
-
-        .btn:hover {
-            background: #e45d00;
-        }
-
-        .instagram-btn {
-            background: #c13584;
-            box-shadow: 0 4px 15px rgba(193,53,132,0.6);
-        }
-
-        .footer {
-            margin: 40px 0;
-            font-size: 13px;
-            color: #bbb;
-        }
-    </style>
+    .contact-btn:hover {
+      background: rgba(255, 255, 255, 0.4);
+    }
+  </style>
 </head>
 <body>
 
-    <!-- نورهای شناور -->
-    <div class="floating-lights">
-        <div class="light" style="left:10%; animation-duration:12s;"></div>
-        <div class="light" style="left:30%; animation-duration:15s;"></div>
-        <div class="light" style="left:50%; animation-duration:10s;"></div>
-        <div class="light" style="left:70%; animation-duration:18s;"></div>
-        <div class="light" style="left:90%; animation-duration:14s;"></div>
+  <div class="dropdown">
+    <button class="dropbtn">دسته‌بندی‌ها</button>
+    <div class="dropdown-content">
+      <a href="#">اکسسوری</a>
+      <a href="#">لباس</a>
+      <a href="#">شلوار</a>
+      <a href="#">کلاه</a>
+      <a href="#">کفش</a>
     </div>
+  </div>
 
-    <div class="header">
-        <h1>فروشگاه jackboys_shop</h1>
-        <p>کمربندهای وارداتی • کیفیت بالا • ارسال سریع</p>
-    </div>
-
-    <div class="slideshow-container">
-        <div class="slide">
-            <img src="https://via.placeholder.com/400x300/222222/ff6a00?text=فول+نگین+1" alt="فول نگین 1">
-            <div class="slide-text">فول نگین</div>
-        </div>
-        <div class="slide">
-            <img src="https://via.placeholder.com/400x300/222222/ff6a00?text=فول+نگین+2" alt="فول نگین 2">
-            <div class="slide-text">فول نگین</div>
-        </div>
-        <div class="slide">
-            <img src="https://via.placeholder.com/400x300/222222/ff6a00?text=فول+نگین+3" alt="فول نگین 3">
-            <div class="slide-text">فول نگین</div>
-        </div>
-    </div>
-
-    <a href="#" class="btn">خرید کمربند</a>
-    <a href="https://instagram.com" class="btn instagram-btn">اینستاگرام ما</a>
-
-    <div class="footer">
-        &copy; 2025 jackboys_shop
-    </div>
-
-    <script>
-        let slideIndex = 0;
-        const slides = document.getElementsByClassName("slide");
-
-        function showSlides() {
-            for (let i = 0; i < slides.length; i++) {
-                slides[i].style.opacity = 0;
-            }
-            slideIndex++;
-            if (slideIndex > slides.length) {slideIndex = 1}
-            slides[slideIndex - 1].style.opacity = 1;
-            setTimeout(showSlides, 3000);
-        }
-
-        showSlides();
-    </script>
+  <a class="contact-btn" href="tel:09199921342">تماس با ما: 09199921342</a>
 
 </body>
 </html>
+

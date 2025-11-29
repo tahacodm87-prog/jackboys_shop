@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>فروشگاه jackboys_shop</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=IRANSans&display=swap');
+
+        /* پس‌زمینه متحرک */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "IRANSans", Tahoma, sans-serif;
+            direction: rtl;
+            text-align: center;
+            color: #f0f0f0;
+            background: linear-gradient(270deg, #121212, #1f1f1f, #121212);
+            background-size: 600% 600%;
+            animation: gradientBG 15s ease infinite;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientBG {
+            0% {background-position: 0% 50%;}
+            50% {background-position: 100% 50%;}
+            100% {background-position: 0% 50%;}
+        }
+
+        /* نورهای شناور */
+        .floating-lights {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .light {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: rgba(255,106,0,0.6);
+            border-radius: 50%;
+            animation: float 10s linear infinite;
+        }
+
+        @keyframes float {
+            0% {transform: translateY(0) translateX(0);}
+            100% {transform: translateY(-120vh) translateX(50vw);}
+        }
+
+        .header {
+            padding: 40px 10px;
+            color: #ff6a00;
+            text-shadow: 1px 1px 5px #000;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 32px;
+        }
+
+        .header p {
+            margin-top: 10px;
+            font-size: 16px;
+            opacity: 0.8;
+        }
+
+        .slideshow-container {
+            position: relative;
+            max-width: 420px;
+            margin: 30px auto;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0,0,0,0.8);
+            background: rgba(31, 31, 31, 0.8);
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            opacity: 0;
+            transition: opacity 1.2s ease-in-out;
+        }
+
+        .slide img {
+            width: 100%;
+            display: block;
+            border-radius: 14px;
+        }
+
+        .slide-text {
+            position: absolute;
+            bottom: 15px;
+            width: 100%;
+            color: #ff6a00;
+            font-size: 22px;
+            font-weight: bold;
+            text-align: center;
+            text-shadow: 2px 2px 6px #000;
+        }
+
+        .btn {
+            display: block;
+            background: #ff6a00;
+            color: #fff;
+            padding: 14px;
+            margin: 12px auto;
+            width: 90%;
+            max-width: 420px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 17px;
+            font-weight: bold;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(255,106,0,0.6);
+        }
+
+        .btn:hover {
+            background: #e45d00;
+        }
+
+        .instagram-btn {
+            background: #c13584;
+            box-shadow: 0 4px 15px rgba(193,53,132,0.6);
+        }
+
+        .footer {
+            margin: 40px 0;
+            font-size: 13px;
+            color: #bbb;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- نورهای شناور -->
+    <div class="floating-lights">
+        <div class="light" style="left:10%; animation-duration:12s;"></div>
+        <div class="light" style="left:30%; animation-duration:15s;"></div>
+        <div class="light" style="left:50%; animation-duration:10s;"></div>
+        <div class="light" style="left:70%; animation-duration:18s;"></div>
+        <div class="light" style="left:90%; animation-duration:14s;"></div>
+    </div>
+
+    <div class="header">
+        <h1>فروشگاه jackboys_shop</h1>
+        <p>کمربندهای وارداتی • کیفیت بالا • ارسال سریع</p>
+    </div>
+
+    <div class="slideshow-container">
+        <div class="slide">
+            <img src="https://via.placeholder.com/400x300/222222/ff6a00?text=فول+نگین+1" alt="فول نگین 1">
+            <div class="slide-text">فول نگین</div>
+        </div>
+        <div class="slide">
+            <img src="https://via.placeholder.com/400x300/222222/ff6a00?text=فول+نگین+2" alt="فول نگین 2">
+            <div class="slide-text">فول نگین</div>
+        </div>
+        <div class="slide">
+            <img src="https://via.placeholder.com/400x300/222222/ff6a00?text=فول+نگین+3" alt="فول نگین 3">
+            <div class="slide-text">فول نگین</div>
+        </div>
+    </div>
+
+    <a href="#" class="btn">خرید کمربند</a>
+    <a href="https://instagram.com" class="btn instagram-btn">اینستاگرام ما</a>
+
+    <div class="footer">
+        &copy; 2025 jackboys_shop
+    </div>
+
+    <script>
+        let slideIndex = 0;
+        const slides = document.getElementsByClassName("slide");
+
+        function showSlides() {
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.opacity = 0;
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {slideIndex = 1}
+            slides[slideIndex - 1].style.opacity = 1;
+            setTimeout(showSlides, 3000);
+        }
+
+        showSlides();
+    </script>
+
+</body>
+</html>

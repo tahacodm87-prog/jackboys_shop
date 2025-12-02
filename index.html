@@ -2,158 +2,222 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Bootik_official</title>
-
+<title>Bootik Store</title>
 <style>
-    body { margin:0; background:#000; color:#fff; font-family:sans-serif; }
-
-    /* HEADER */
-    header {
-        padding:25px;
-        text-align:center;
-        font-size:32px;
-        font-weight:bold;
-        background:linear-gradient(90deg,#000,#111,#000);
-        letter-spacing:3px;
-        animation: glow 3s infinite alternate;
-    }
-    @keyframes glow { from{color:#9000ff;} to{color:#fff;} }
-
-    /* SLIDER */
-    .slider {
-        width:100%; height:280px; overflow:hidden; position:relative;
-        margin-top:20px;
-    }
-    .slides {
-        width:500%; height:100%;
-        display:flex;
-        animation: slide 12s infinite;
-    }
-    .slides img { width:100%; object-fit:cover; opacity:0.7; }
-    @keyframes slide {
-        0% {margin-left:0;}
-        20% {margin-left:0;}
-        25% {margin-left:-100%;}
-        45% {margin-left:-100%;}
-        50% {margin-left:-200%;}
-        70% {margin-left:-200%;}
-        75% {margin-left:-300%;}
-        95% {margin-left:-300%;}
-        100% {margin-left:-400%;}
-    }
-
-    /* PRODUCTS */
-    h2 { text-align:center; margin-top:40px; font-size:26px; opacity:0.9; }
-    .products {
-        display:grid;
-        grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-        gap:20px;
-        padding:20px;
-    }
-
-    .card {
-        background:#111;
-        border:1px solid #222;
-        padding:15px;
-        border-radius:12px;
-        text-align:center;
-        transition:0.3s;
-        animation: fade 1.5s;
-    }
-    @keyframes fade { from{opacity:0;} to{opacity:1;} }
-
-    .card:hover {
-        transform:scale(1.05);
-        border-color:#9000ff;
-        box-shadow:0 0 15px #9000ff55;
-    }
-
-    img {
-        width:100%;
-        border-radius:10px;
-        margin-bottom:10px;
-    }
-
-    button {
-        width:100%;
-        padding:12px;
-        background:#9000ff;
-        border:none;
-        border-radius:8px;
-        color:#fff;
-        font-size:15px;
-        cursor:pointer;
-        transition:0.2s;
-    }
-    button:hover { background:#b34dff; }
-
-    footer {
-        text-align:center;
-        padding:20px;
-        margin-top:40px;
-        font-size:13px;
-        opacity:0.5;
-    }
+body {
+    background: #0a0a0a;
+    color: #fff;
+    font-family: sans-serif;
+    margin: 0; padding: 0;
+}
+header {
+    background: #111;
+    padding: 20px;
+    text-align: center;
+    font-size: 26px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+.container {
+    width: 90%;
+    margin: 40px auto;
+}
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(230px,1fr));
+    gap: 20px;
+}
+.card {
+    background: #141414;
+    border: 1px solid #222;
+    padding: 15px;
+    border-radius: 10px;
+    transition: .3s;
+}
+.card:hover { transform: scale(1.03);}
+.card img {
+    width: 100%;
+    border-radius: 10px;
+}
+.card button {
+    margin-top: 10px;
+    width: 100%;
+    padding: 10px;
+    background: #e600ff;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+}
+#productPage, #cartPage {
+    display: none;
+    padding: 20px;
+    background: #111;
+    border-radius: 10px;
+}
+.back {
+    background: #444;
+    padding: 8px 15px;
+    border-radius: 8px;
+    display: inline-block;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+td, th {
+    padding: 10px;
+    border-bottom: 1px solid #333;
+}
+.pay-btn {
+    margin-top: 20px;
+    padding: 12px;
+    font-size: 18px;
+    width: 100%;
+    border: none;
+    background: #ff00d4;
+    color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+}
 </style>
 </head>
-
 <body>
 
-<header>Bootik_official • Dark Gang Store</header>
+<header>Bootik • Store</header>
 
-<!-- ====================== SLIDER ====================== -->
-<div class="slider">
-    <div class="slides">
-        <img src="https://via.placeholder.com/1600x500/111/fff?text=Bootik+Dark+Collection">
-        <img src="https://via.placeholder.com/1600x500/111/fff?text=New+Masks">
-        <img src="https://via.placeholder.com/1600x500/111/fff?text=Streetwear+Gang">
-        <img src="https://via.placeholder.com/1600x500/111/fff?text=Exclusive+Drops">
-        <img src="https://via.placeholder.com/1600x500/111/fff?text=Bootik+official">
-    </div>
+<div class="container">
+
+<!-- صفحه اصلی محصولات -->
+<div id="homePage">
+    <h2>محصولات</h2>
+    <div class="products" id="productList"></div>
 </div>
 
-<h2>🔥 جدیدترین محصولات Bootik_official</h2>
+<!-- صفحه محصول -->
+<div id="productPage">
+    <div class="back" onclick="showHome()">← بازگشت</div>
+    <h2 id="pTitle"></h2>
+    <img id="pImg" style="width:300px;border-radius:10px;">
+    <p id="pDesc"></p>
+    <p id="pPrice"></p>
+    <button onclick="addToCart(currentProduct)">اضافه به سبد</button>
+</div>
 
-<!-- ==================== PRODUCTS (10 ITEMS) ==================== -->
-<section class="products">
+<!-- صفحه سبد خرید -->
+<div id="cartPage">
+    <div class="back" onclick="showHome()">← بازگشت</div>
+    <h2>سبد خرید</h2>
+
+    <table id="cartTable"></table>
+    <h3 id="cartTotal"></h3>
+
+    <button class="pay-btn" onclick="pay()">پرداخت زرین‌پال</button>
+</div>
+
+</div>
 
 <script>
-// ======= PRODUCTS ARRAY (10 ITEMS) =======
-const items = [
-    {name:"ماسک مدل Phantom", price:150000, img:"https://via.placeholder.com/300x300/111/fff?text=Mask+1"},
-    {name:"ماسک Skull Edition", price:190000, img:"https://via.placeholder.com/300x300/111/fff?text=Mask+2"},
-    {name:"ماسک Ninja Ghost", price:220000, img:"https://via.placeholder.com/300x300/111/fff?text=Mask+3"},
-    {name:"هودی Dark Shadow", price:480000, img:"https://via.placeholder.com/300x300/111/fff?text=Hoodie+1"},
-    {name:"هودی Street Gang", price:520000, img:"https://via.placeholder.com/300x300/111/fff?text=Hoodie+2"},
-    {name:"تیشرت BlackNoise", price:250000, img:"https://via.placeholder.com/300x300/111/fff?text=Tshirt+1"},
-    {name:"تیشرت HellMode", price:290000, img:"https://via.placeholder.com/300x300/111/fff?text=Tshirt+2"},
-    {name:"دستکش Tactical", price:160000, img:"https://via.placeholder.com/300x300/111/fff?text=Gloves"},
-    {name:"بَندانا DarkWave", price:120000, img:"https://via.placeholder.com/300x300/111/fff?text=Bandana"},
-    {name:"کیف SideBag Ghost", price:310000, img:"https://via.placeholder.com/300x300/111/fff?text=Bag"}
+// محصولات
+const products = [
+    {id:1, title:"هودی دارک", price:350000, img:"https://via.placeholder.com/300x300?text=Hoodie", desc:"هودی سبک گنگ با کیفیت بالا"},
+    {id:2, title:"تیشرت مشکی", price:180000, img:"https://via.placeholder.com/300x300?text=Tshirt", desc:"تی‌شرت فیت، مناسب استایل دارک"},
+    {id:3, title:"کفش بوت", price:600000, img:"https://via.placeholder.com/300x300?text=Boots", desc:"بوت چرمی با استایل خاص"},
+    {id:4, title:"دستبند فلزی", price:90000, img:"https://via.placeholder.com/300x300?text=Bracelet", desc:"اکسسوری با حس تاریک و خاص"},
+    {id:5, title:"کاپشن مشکی", price:750000, img:"https://via.placeholder.com/300x300?text=Jacket", desc:"کاپشن زمستانی دارک"},
 ];
 
-// ====== Render Cards ======
-document.write(
-    items.map(p=>`
+let cart = [];
+let currentProduct = null;
+
+// نمایش محصولات
+function loadProducts() {
+    let html = "";
+    products.forEach(p=>{
+        html += `
         <div class="card">
             <img src="${p.img}">
-            <h3>${p.name}</h3>
+            <h3>${p.title}</h3>
             <p>${p.price.toLocaleString()} تومان</p>
-            <button onclick="pay(${p.price}, '${p.name}')">خرید</button>
-        </div>
-    `).join("")
-);
-</script>
+            <button onclick="viewProduct(${p.id})">مشاهده</button>
+        </div>`;
+    });
+    document.getElementById("productList").innerHTML = html;
+}
+loadProducts();
 
-</section>
+// نمایش صفحه محصول
+function viewProduct(id) {
+    const p = products.find(x=>x.id===id);
+    currentProduct = p;
+    document.getElementById("pTitle").innerText = p.title;
+    document.getElementById("pImg").src = p.img;
+    document.getElementById("pDesc").innerText = p.desc;
+    document.getElementById("pPrice").innerText = p.price.toLocaleString() + " تومان";
 
-<footer>Bootik_official © 2025</footer>
+    hideAll();
+    document.getElementById("productPage").style.display = "block";
+}
 
-<!-- PAYMENT SYSTEM (Fake/Test - Ready for Zarinpal) -->
-<script>
-function pay(price, name){
-    alert("پرداخت تستی فعال است.\nمحصول: "+name+"\nقیمت: "+price.toLocaleString()+" تومان");
+// افزودن به سبد
+function addToCart(p) {
+    cart.push(p);
+    alert("به سبد اضافه شد");
+}
+
+// رفتن به سبد
+function showCart() {
+    hideAll();
+    document.getElementById("cartPage").style.display = "block";
+
+    let rows = `
+    <tr>
+        <th>محصول</th>
+        <th>قیمت</th>
+    </tr>`;
+    let total = 0;
+
+    cart.forEach(item=>{
+        rows += `
+        <tr>
+            <td>${item.title}</td>
+            <td>${item.price.toLocaleString()}</td>
+        </tr>`;
+        total += item.price;
+    });
+
+    document.getElementById("cartTable").innerHTML = rows;
+    document.getElementById("cartTotal").innerText = "جمع کل: " + total.toLocaleString() + " تومان";
+}
+
+// برگشت
+function showHome() {
+    hideAll();
+    document.getElementById("homePage").style.display = "block";
+}
+
+// مخفی کردن همه صفحات
+function hideAll() {
+    document.getElementById("homePage").style.display = "none";
+    document.getElementById("productPage").style.display = "none";
+    document.getElementById("cartPage").style.display = "none";
+}
+
+// پرداخت زرین پال (نسخه آماده)
+function pay() {
+    const total = cart.reduce((t,i)=>t+i.price,0);
+
+    if(total === 0){
+        alert("سبد خرید خالی است");
+        return;
+    }
+
+    // ریدایرکت به زرین‌پال
+    window.location.href =
+        "https://www.zarinpal.com/pg/StartPay/YOUR_AUTHORITY_CODE";
 }
 </script>
 
